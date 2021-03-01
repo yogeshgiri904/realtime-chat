@@ -45,9 +45,9 @@
     <body>
         <div class="top-bar"></div>
         <div class="header-tools">
-            <img src="img/n.jpg" alt="Namaste" id="logo"/>
+            <a href="home.php"><img src="img/n.jpg" alt="Namaste" id="logo"/></a>
             <div class="heading">
-                <p class="headname"><?php echo "NAMASTE - ".$room; ?></p>
+                <p class="headname"><?php echo $room; ?></p>
                 <p><i class="fa fa-circle" aria-hidden="true"></i> Online</p>
             </div>
         </div>

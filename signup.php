@@ -1,5 +1,14 @@
+<?php 
+session_start();
+if(isset($_SESSION['username']))
+{
+  header("location: home.php");
+  die();
+}
+?>
+
 <?php
-  include "conn.php";
+  include 'conn.php';
   $loginAlert= false;
   $userExists= false;
   if($_POST)
@@ -65,7 +74,14 @@
     <title>Namaste - Sign Up</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
+            * {
+        font-family: 'Poppins', sans-serif;
+      }
+      h1,h2,h3,h4,h5,h6{
+        font-weight: bold;
+      }
         .login__form {
           top: 3%;
           width: 100%;
@@ -88,7 +104,7 @@
           <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
             <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
           </svg>
-          <input type="text" name="username" required class="login__input name" placeholder="Username*"/>
+          <input type="text" name="username" required class="login__input name" placeholder="Username"/>
         </div>
 
         <div class="login__row">
@@ -120,6 +136,7 @@
         </div>
           <input type="submit" name="submit" class="login__submit" value="Sign Up">
           <p class="login__signup">Already have an account? &nbsp;<a href="index.php">Sign In</a></p>
+
       </form>
     </div>
   </div>

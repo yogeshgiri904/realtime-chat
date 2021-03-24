@@ -18,13 +18,24 @@
     {
         while($data = mysqli_fetch_assoc($readResult))
         {
-            if($data['username']!=$username)
+            $getUsername = $data['username'];
+            $getImg ="SELECT * FROM `dp` WHERE `username` = '$getUsername';";
+            $imgResult = mysqli_query($conn, $getImg);
+            if(mysqli_num_rows($imgResult)>0) {
+              $imgData = mysqli_fetch_array($imgResult);
+              $folder = $imgData['folder'];
+            }
+            else
+            {
+              $folder = "asset/user.png";
+            }
+            if($getUsername != $username)
             {
                 echo "<li class='bot'>
                 <div class='cui__bubble'>
                     <div class='inner__bubble'>
-                        <img src=".$data['dp']." alt='friend'>
-                        <h4>".$data['username']." :&nbsp;</h4>
+                        <img src=".$folder." alt='friend'>
+                        <h4>".$getUsername ." :&nbsp;</h4>
                         <p>".$data['msg']."</p>
                     </div>
                 </div>
@@ -33,13 +44,13 @@
             else
             {
                 $folder = "asset/user.png";
-                $data['username']="You";
+                $getUsername ="You";
                 echo "<li class='human'>
                 <div class='cui__bubble'>
                     <div class='inner__bubble'>
                         <h4>".$data['username']." :&nbsp;</h4>
                         <p>".$data['msg']."</p>
-                        <img src=".$data['dp']." alt='you'>
+                        <img src=".$folder." alt='you'>
                     </div>
                 </div>
                 </li>";

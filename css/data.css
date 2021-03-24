@@ -117,6 +117,7 @@ html body .convo__wrapper .bubble__wrapper li.bot .cui__bubble
     max-width:80%;
     min-width:44px;
     min-height:12px;
+    max-height:auto;
     opacity:1;
 }
 html body .convo__wrapper .bubble__wrapper li.bot .cui__bubble .inner__bubble
@@ -171,6 +172,7 @@ html body .convo__wrapper .bubble__wrapper li.human .cui__bubble
     max-width:80%;
     min-width:44px;
     min-height:12px;
+    max-height:auto;
     opacity:1;
 }
 html body .convo__wrapper .bubble__wrapper li.human .cui__bubble .inner__bubble
@@ -387,6 +389,7 @@ html body .slide-up
         max-width:100%;
         min-width:44px;
         min-height:12px;
+        max-height:auto;
         opacity:1;
     }
     html body .convo__wrapper .bubble__wrapper li.bot .cui__bubble .inner__bubble
@@ -424,13 +427,13 @@ html body .slide-up
         max-width:100%;
         min-width:44px;
         min-height:12px;
-        opacity:1;
-        transition:width 0.5s;
-        -webkit-transition:width 0.5s;
+        max-height:auto;
+        opacity: 1;
     }
     html body .convo__wrapper .bubble__wrapper li.human .cui__bubble .inner__bubble
     {
-        transition:visibility 0.5s
+        transition:visibility 0.5s;
+        
     }
     html body .convo__wrapper .bubble__wrapper li.human .cui__bubble .inner__bubble img
     {

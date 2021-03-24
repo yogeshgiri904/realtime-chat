@@ -1,14 +1,14 @@
 <?php
-      session_start();
-      session_unset();
-      session_destroy();
+    session_start();
+    session_unset();
+    session_destroy();
+    header("Refresh:5; url=profile.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="refresh" content="5;URL=index.php">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signing Out</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
@@ -21,7 +21,7 @@
 			<div class="notfound-404">
 				<h1><i class="fa fa-lock" aria-hidden="true"></i></h1>
 			</div>
-			<h2>You have been successfully signed out !!!</h2>
+			<h2 style="padding:10px 15px 10px 15px;">You have been successfully signed out !</h2>
 			<p >Redirecting you to the Sign In page again. <br> <br> <span id="count">5 seconds remaining... </span></p>    
 			<a href="index.php">Sign In</a>
 		</div>

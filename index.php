@@ -1,4 +1,13 @@
 <?php 
+session_start();
+if(isset($_SESSION['username']))
+{
+  header("location: home.php");
+  die();
+}
+?>
+
+<?php
 if($_POST)
 {
   include 'conn.php';
@@ -19,6 +28,7 @@ if($_POST)
     $_SESSION['mobile'] = $row['mobile'];
     $_SESSION['email'] = $row['email'];
     $_SESSION['pass'] = $row['pass'];
+    $_SESSION['timestamp'] = time();
     header("location: home.php");
   }
   else
@@ -46,7 +56,15 @@ if($_POST)
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/index.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+            * {
+        font-family: 'Poppins', sans-serif;
+      }
+      h1,h2,h3,h4,h5,h6{
+        font-weight: bold;
+      }
+    </style>
 </head>
 <body>
 <div class="cont">

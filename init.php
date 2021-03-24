@@ -20,7 +20,6 @@
             $showConfirm = true;
         }
     }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,6 +35,15 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/init.css">
     <title>Create Room</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+            * {
+        font-family: 'Poppins', sans-serif;
+      }
+      h1,h2,h3,h4,h5,h6{
+        font-weight: bold;
+      }
+    </style>
 </head>
 <body>
 <div class="wrapper fadeInDown">
@@ -51,6 +59,15 @@ if($showConfirm)
 }
 ?>
   <div id="formContent">
+  <div class="container pt-3">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="main-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="home.php">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Create Group</li>
+    </ol>
+    </nav>
+    <!-- /Breadcrumb -->
     <div class="fadeIn first">
       <img src="img/n.jpg" id="icon" alt="User Icon" />
     </div>

@@ -14,53 +14,123 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <title>Find Friends</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" rel="stylesheet" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Find Friend - NAMASTE</title>
     <style>
-        .container
-            {
-                position: absolute;
-                left: 50%;
-                transform: translate(-50%,0%);
-                width: 100vw;
-                height: 100vh;
-                display: inline-flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: row;
-                flex-wrap: wrap;
-
-            }
-        .card
-            {
-                margin: 5px;
-            }
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+h1,h2,h3,h4,h5,h6{
+  font-weight: bold;
+}
+.container {
+  margin: auto;
+  font-family: "Poppins", Arial, san-serif;
+  line-height: 1.4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9;
+  height: 100%;
+}
+.card {
+  background: #fff;
+  background-size: contain;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px -5px rgba(60, 60, 60, 0.2);
+  text-align: center;
+  padding: 30px;
+}
+.card img {
+  background-color: #dddfe6;
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  margin: auto auto 15px;
+  display: block;
+}
+.card h1 {
+  font-size: 22px;
+  margin: 10px auto 0;
+  letter-spacing: 1px;
+}
+.card h2 {
+  margin: auto;
+  color: #b1b6c6;
+  font-weight: 300;
+  font-size: 14px;
+}
     </style>
 </head>
 <body>
-    <h4 class="text-center my-4 mt-3">Find Your Friends Here</h4>
-    <div class='container'>
-        <?php
-            $findSql = "SELECT * FROM `login`;";
-            $result = mysqli_query($conn, $findSql);
-            if(mysqli_num_rows($result)>0)
-            {
-                while($data = mysqli_fetch_assoc($result))
+<div class="container bg-white p-4 pb-2">
+<nav class="navbar navbar-expand-lg navbar-white bg-white w-100">
+  <div class="container-fluid">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="home.php"><i>Home</i></a></li>
+        <li class="breadcrumb-item active" aria-current="page"><i>Find Friends</i></li>
+      </ol>
+    </nav>
+  </div>
+</nav>
+</div>
+
+    <div class="container bg-white">
+        <div class="row p-2">
+            <?php
+                $findSql = "SELECT * FROM `login`;";
+                $result = mysqli_query($conn, $findSql);
+                if(mysqli_num_rows($result)>0)
                 {
-                    $username = $data['username'];
-                    $email = $data['email'];
-                    $mobile = $data['mobile'];
-                    echo "    <div class='card' style='width: 18rem;'>
-                    <img src='asset/user.png' class='card-img-top' alt='user-image'>
-                    <div class='card-body'>
-                        <h5 class='card-title'>$username <i class='fa fa-check-circle text-success' aria-hidden='true'></i></h5>
-                        <p class='card-text'><i class='fa fa-phone' aria-hidden='true'></i> $mobile</p>
-                        <p class='card-text'><i class='fa fa-envelope' aria-hidden='true'></i> $email</p>
-                        <a href='create.php?id=$username' class='btn btn-primary'>Message</a>
-                    </div>
-                </div>";
+                    while($data = mysqli_fetch_assoc($result))
+                    {
+                        $friendUsername = $data['username'];
+                        $email = $data['email'];
+                        $mobile = $data['mobile'];
+                        $target = $friendUsername.$username;
+                        $ifExists = $username.$friendUsername;
+                        if($username != $friendUsername)
+                        { 
+                          // $findTable = "SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'epiz_27865341_user' AND TABLE_NAME = '$ifExists'";
+                          $findTable = "SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'user' AND TABLE_NAME = '$ifExists'";
+                          $findResult = mysqli_query($conn, $findTable);
+                          if(mysqli_num_rows($findResult)>0)
+                          {
+                            $target = $ifExists;
+                          } 
+                          $getImg ="SELECT * FROM `dp` WHERE `username` = '$friendUsername';";
+                          $imgResult = mysqli_query($conn, $getImg);
+                          if(mysqli_num_rows($imgResult)>0) {
+                            $imgData = mysqli_fetch_array($imgResult);
+                            $folder = $imgData['folder'];
+                          }
+                          else
+                          {
+                            $folder = "asset/user.png";
+                          }
+                        echo "
+                        <div class='col-md-4 p-3'>
+                        <div class='card'>
+                        <img src='$folder' alt='User'>
+                        <h1 class='font-weight-bold mb-1'>$friendUsername</h1>
+                        <h2><i class='fas fa-envelope'></i> $email</h2>
+                        <h2><i class='fas fa-mobile-alt'></i> $mobile</h2>
+                        <div class='container bg-white'>
+                          <a href='create.php?id=$target' type='button' class='btn btn-lg btn-outline-danger btn-rounded m-1 mt-3' data-mdb-ripple-color='dark'><i class='fas fa-plus'></i> Add</a>
+                          <a href='create.php?id=$target' type='button' title='Messsage' class='btn btn-lg btn-primary btn-floating m-1 mt-3'><i class='fas fa-paper-plane fa-lg''></i></a>
+                        </div>
+                        </div>
+                        </div>";
+                        }
+                    }
                 }
-            }
-        ?>
+            ?>
+        </div>
     </div>
 
 </body>

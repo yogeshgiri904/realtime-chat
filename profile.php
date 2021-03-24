@@ -14,7 +14,6 @@
   $folder = "asset/user.png";
   }
 
-
   $sql="SELECT * FROM `profile` WHERE `username` = '$username';";
   $result = mysqli_query($conn, $sql);
   $data = mysqli_fetch_array($result);
@@ -56,7 +55,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <title>User</title>
-  <style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+            * {
+        font-family: 'Poppins', sans-serif;
+      }
+      h1,h2,h3,h4,h5,h6{
+        font-weight: bold;
+      }
   body {
       margin-top:20px;
       color: #1a202c;
@@ -161,16 +167,16 @@
                         <span class="text-primary"><a href="home.php">Home</a></span>
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                        <span class="text-primary"><a href="profile.php">Profile</a></span>
+                        <span class="text-primary"><a href="find.php">Add Friend</a></span>
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                        <span class="text-primary"><a href="find.php">Friends</a></span>
+                        <span class="text-primary"><a href="hatDisplay.php">My Inbox</a></span>
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                        <span class="text-primary"><a href="init.php">Messenger</a></span>
+                        <span class="text-primary"><a href="init.php">Create Group</a></span>
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                        <span class="text-primary"><a href="signout.php">Sign Out</a></span>
+                        <span class="text-primary"><a href="sessionOut.php">Sign Out</a></span>
                       </li>
                     </ul>
                   </div>

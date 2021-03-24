@@ -145,7 +145,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Edit Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
+            * {
+        font-family: 'Poppins', sans-serif;
+      }
+      h1,h2,h3,h4,h5,h6{
+        font-weight: bold;
+      }
     body {
         background-color: white;
     }
@@ -193,11 +200,22 @@
     }
  
 ?>
-    <form method="POST" enctype="multipart/form-data">
+<div class="container mt-3">
+    <nav aria-label="breadcrumb" class="main-breadcrumb bg-white">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="home.php">Home</a></li>
+            <li class="breadcrumb-item"><a href="profile.php">Profile</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Change Password</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="container">
+<form method="POST" enctype="multipart/form-data">
     <div class="container bg-white mt-2">
         <div class="row">
-            <div class="col-md-4 mt-5">
-                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+            <div class="col-md-4">
+                <div class="d-flex flex-column align-items-center text-center p-3 pt-5">
                     <div class="p-box col-md-4">
                         <div class="d-flex align-center justify-content-center">
                             <div class="profile-img">
@@ -209,15 +227,15 @@
                             </div>
                         </div>
                     </div>
-                    <input type="submit" class="btn btn-success" name="upload" value="Upload">
+                    <input type="submit" class="btn btn-primary" name="upload" value="Upload">
                     <br>
-                    <span style="font-size: 25px;"> <?php echo $_SESSION['username'];?> <i class="fa text-success fa-check-circle"></i></span>
+                    <h4 style="font-size: 25px;"> <?php echo $_SESSION['username'];?> <i class="fa text-success fa-check-circle"></i></h4>
                     <span class="text-p"><i class="fa fa-envelope" aria-hidden="true"></i> <?php echo $_SESSION['email'];?></span>
                     <span class="text-p"><i class="fa fa-phone" aria-hidden="true"></i> <?php echo $_SESSION['mobile'];?></span>
                 </div>
             </div>
             <div class="col-md-7">
-                <div class="p-3 py-5">
+                <div class="py-5">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4>Update Your Profile</h4>
                     </div>
@@ -250,7 +268,11 @@
                     <div class="row mt-2">
                         <div class="col-md-12"><label class="labels">Bio</label><textarea name="bio" class="form-control" rows="3"><?php echo $data['bio'];?></textarea></div>
                     </div>
-                    <div class="mt-5 text-center"><input type="submit" class="btn btn-primary" value="Save Profile" name="submit"></div>
+                    <div class="mt-5 text-center">
+                        <input type="submit" class="btn btn-success" value="Update" name="submit">
+                        <input type="reset" class="btn btn-danger" value="Reset" name="submit">
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -258,5 +280,6 @@
     </div>
     </div>
 </form>
+</div>
 </body>
 </html>

@@ -42,8 +42,9 @@
                     if($updateResult)
                     {
                         echo '<div class="alert alert-success" role="alert">
-                        <b>Success </b>Your password has been changed successfully. <a href="index.php">Sign In</a> again?
+                        <b>Success ! </b>Your password has been changed successfully. Redirecting to Sign In page...
                         </div>';
+                        header("Refresh:4; url=sessionOut.php");                    
                     }
                     else
                     {
@@ -87,7 +88,14 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>Change Password</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
+            * {
+        font-family: 'Poppins', sans-serif;
+      }
+      h1,h2,h3,h4,h5,h6{
+        font-weight: bold;
+      }
         body{
             background:#eee;
         }
@@ -133,7 +141,7 @@
     </nav>
 </div>
 
-<div class="container bootstrap snippets bootdey pl-5 pr-5 pt-4">
+<div class="container bootstrap snippets bootdey pl-5 pr-5 pt-4 pb-5">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-2">
             <div class="panel panel-info">

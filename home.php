@@ -1,17 +1,6 @@
 <?php 
   include "conn.php";
   include "auth.php";
-
-// $time = time()+15*60;  
-//   echo time()." ".$time;
-//   echo "<br>";
-// if($_SESSION['timestamp']<time()){
-//  echo "logging out";
-// }
-//  $_SESSION['timestamp'] = time()+10;
-//  echo $_SESSION['timestamp']." ".time(); 
-
-
 ?>
 <?php
   $selectSql="SELECT * FROM `dp` WHERE `username` = '$username';";
@@ -285,8 +274,8 @@
         <div class="pl-3 pr-2">
           <h5 class="card-title">Namaste Chatting Website</h5>
           <p class="text-muted">Setup your beautiful profile. Find your friends here and start chatting with them, also make numbers of new friend here. There is a option to create group also, if you want to chat with more than one friend simultaneously.</p>
-          <a href="https://github.com/yogeshgiri904" class="btn btn-success mt-2 mr-2">Visit Your Profile</a>
-          <a href="https://yogeshgiri904.github.io/advance_sro/" class="btn mt-2 mr-2 btn-danger">Find Friends</a>
+          <a href="profile.php" class="btn btn-success mt-2 mr-2">Visit Your Profile</a>
+          <a href="find.php" class="btn mt-2 mr-2 btn-danger">Find Friends</a>
         </div>
       </div>
     </div>

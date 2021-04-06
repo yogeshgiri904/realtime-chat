@@ -9,16 +9,13 @@ if(isset($_SESSION['username']))
 
 <?php
   include 'conn.php';
-  $loginAlert= false;
-  $userExists= false;
-  if($_POST)
+  if(isset($_POST['submit']))
   {
     $username = $_POST["username"];
     $pass = $_POST["pass"];
     $cpass = $_POST["cpass"];
     $email = $_POST["email"];
     $mobile = $_POST["mobile"];
-
 
     $emailSql = "SELECT * FROM `login` WHERE `email` LIKE '$email'";
     $userSql = "SELECT * FROM `login` WHERE `username` LIKE '$username'";
@@ -51,7 +48,6 @@ if(isset($_SESSION['username']))
           echo '<div class="alert alert-success" role="alert">
           Your account has been created successfully. <a href="index.php">Sign In</a> now?
           </div>';
-          $loginAlert= true;
         }
       }
     }
@@ -61,6 +57,9 @@ if(isset($_SESSION['username']))
       Your password and confirmation password do not match.
       </div>';
     }
+  }
+  else{
+    $username = $pass = $cpass = $email = $mobile = NULL;
   }
   
 ?>
@@ -104,35 +103,35 @@ if(isset($_SESSION['username']))
           <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
             <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
           </svg>
-          <input type="text" name="username" required class="login__input name" placeholder="Username"/>
+          <input type="text" name="username" required class="login__input name" value="<?php echo $username; ?>" placeholder="Username"/>
         </div>
 
         <div class="login__row">
             <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
               <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
             </svg>
-            <input type="text" name="email" required class="login__input name" placeholder="Email"/>
+            <input type="text" name="email" required class="login__input name" value="<?php echo $email; ?>" placeholder="Email"/>
         </div>
 
         <div class="login__row">
         <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
             <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
         </svg>
-        <input type="text" name="mobile" required class="login__input name" placeholder="Mobile"/>
+        <input type="text" name="mobile" required class="login__input name" value="<?php echo $mobile; ?>" placeholder="Mobile"/>
         </div>
 
         <div class="login__row">
             <svg class="login__icon pass svg-icon" viewBox="0 0 20 20">
               <path d="M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0" />
             </svg>
-            <input type="password" name="pass" required class="login__input pass" placeholder="Password"/>
+            <input type="password" name="pass" required class="login__input pass" value="<?php echo $pass; ?>" placeholder="Password"/>
         </div>
 
         <div class="login__row">
           <svg class="login__icon pass svg-icon" viewBox="0 0 20 20">
               <path d="M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0" />
           </svg>
-          <input type="password" name="cpass" required class="login__input pass" placeholder="Confirm Password"/>
+          <input type="password" name="cpass" required class="login__input pass" value="<?php echo $cpass; ?>" placeholder="Confirm Password"/>
         </div>
           <input type="submit" name="submit" class="login__submit" value="Sign Up">
           <p class="login__signup">Already have an account? &nbsp;<a href="index.php">Sign In</a></p>

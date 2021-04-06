@@ -41,6 +41,9 @@ if($_POST)
     </div>";
   }
 }
+else{
+  $username = $pass = NULL;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -79,13 +82,13 @@ if($_POST)
           <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
             <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
           </svg>
-          <input type="text" name="username" required class="login__input name" placeholder="Username"/>
+          <input type="text" name="username" required class="login__input name" value="<?php echo $username; ?>" placeholder="Username"/>
         </div>
         <div class="login__row">
           <svg class="login__icon pass svg-icon" viewBox="0 0 20 20">
             <path d="M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0" />
           </svg>
-          <input type="password" name="pass" required class="login__input pass" placeholder="Password"/>
+          <input type="password" name="pass" required class="login__input pass" value="<?php echo $pass; ?>" placeholder="Password"/>
         </div>
         <input type="submit" name="submit" class="login__submit" value="Sign In">
         <p class="login__signup">Don't have an account? &nbsp;<a href="signup.php">Sign Up</a></p>

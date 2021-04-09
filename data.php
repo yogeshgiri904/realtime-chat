@@ -10,6 +10,7 @@
         <meta name="viewport" content="width=device-width, minimal-ui, initial-scale=1, minimum-scale=1, user-scalable = no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="css/data.css" rel="stylesheet" type="text/css" />
+        <link rel="icon" href="img/n.jpg" type="image/x-icon">
         <title><?php 
             $finalName = str_replace($username, "", $room);
             echo $finalName." | NAMASTE"; 

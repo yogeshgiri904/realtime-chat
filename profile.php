@@ -54,7 +54,8 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <title>User</title>
+  <title>Profile | Namaste</title>
+  <link rel="icon" href="img/n.jpg" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
             * {
@@ -72,7 +73,6 @@
   .card {
       box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
   }
-
   .card {
       position: relative;
       display: flex;
@@ -117,6 +117,10 @@
   .shadow-none {
       box-shadow: none!important;
   }
+  .button-link, .button-link:hover{
+    text-decoration: none;
+    color: white;
+  }
   </style>
 </head>
 <body>
@@ -125,7 +129,7 @@
         
               <!-- Breadcrumb -->
               <nav aria-label="breadcrumb" class="main-breadcrumb">
-                <ol class="breadcrumb">
+                <ol class="breadcrumb bg-white">
                   <li class="breadcrumb-item"><a href="home.php">Home</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Profile</li>
                 </ol>
@@ -150,13 +154,13 @@
                             if($check >= 1)
                             {
                                 $sn = $data['sn'];
-                                echo "<button class='btn btn-success'><a class='text-white' href='editprofile.php?id=$sn'>Edit Profile</a></button>";
+                                echo "<button class='btn btn-success'><a class='button-link' href='editprofile.php?id=$sn'>Edit Profile</a></button>";
                             }
                             else{
-                                echo "<button class='btn btn-success'><a class='text-white' href='editprofile.php'>Edit Profile</a></button>";
+                                echo "<button class='btn btn-success'><a class='button-link' href='editprofile.php'>Edit Profile</a></button>";
                             }
                           ?>
-                          <button class="btn btn-danger"><a class='text-white' href='sessionOut.php'>Sign Out</a></button>
+                          <button class="btn btn-danger"><a class='button-link' href='sessionOut.php'>Sign Out</a></button>
                         </div>
                       </div>
                     </div>
@@ -190,7 +194,6 @@
                         </div>
                         <div class="col-sm-9 text-secondary">
                           <?php echo $_SESSION['username']; ?> <i class="fa text-success fa-check-circle" aria-hidden="true"></i>
-
                         </div>
                       </div>
                       <hr>

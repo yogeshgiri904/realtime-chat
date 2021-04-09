@@ -42,7 +42,8 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <title>Namaste - Home</title>
+  <title>Home | Namaste</title>
+  <link rel="icon" href="img/n.jpg" type="image/x-icon">
   <style>
     * {
         font-family: 'Poppins', sans-serif;
@@ -137,7 +138,7 @@
         </div>
         <div class="carousel-caption">
             <div class="container">
-            <h2 class="h2-responsive">Namaste Chatting Website</h2>
+            <h2 class="h2-responsive">Namaste Messenger</h2>
             <p>This beautiful website is created by Yogesh Giri.</p>
           </div>
         </div>
@@ -186,11 +187,13 @@
   <div class="card w-100">
     <div class=" p-4 shadow">
     <h5 class="card-title">Introducing,</h5>
-      <h2 class="card-title"><a href="#">Namaste Chatting Website</a></h2>
+      <h2 class="card-title text-primary">Namaste Messenger</h2>
       <p class="card-text">
-      1. First of all, Setup your beautiful profile. <br>
-      2. Find your friends here and start chatting with them, also make numbers of new friend here. <br>
-      3. There is a option to create group also, if you want to chat with more than one friend simultaneously.
+        <ul style="list-style-type: katakana;">
+        <li> First of all, Setup your beautiful profile by uploading a beautiful picture of yours.</li>
+        <li> Find your friends here and start chatting with them, also make numbers of new friend here.</li>
+        <li> There is a option to create group also, if you want to chat with more than one friend simultaneously.</ol>
+        </ul>
       </p> 
       <?php
         if($check >= 1)
@@ -215,7 +218,7 @@
         <p class="card-text">
           Visit your beautiful profile. Upload profile picture, edit your details, change password and many more.
         </p>
-        <a href="profile.php" class="btn btn-primary">My Profile</a>
+        <a href="profile.php" class="btn btn-danger">My Profile</a>
       </div>
     </div>
   </div>
@@ -226,7 +229,7 @@
         <p class="card-text">
           Visit your beautiful profile. Upload profile picture, edit your details, change password and many more.
         </p>
-        <a href="find.php" class="btn btn-primary">Find Friends</a>
+        <a href="find.php" class="btn btn-success">Find Friends</a>
       </div>
     </div>
   </div>
@@ -243,7 +246,7 @@
         <p class="card-text">
          Create a new group now and use realtime and instant chatting feature with any numbers of friends.
         </p>
-        <a href="hatDisplay.php" class="btn btn-primary">My Inbox</a>
+        <a href="hatDisplay.php" class="btn btn-warning">My Inbox</a>
       </div>
     </div>
   </div>
@@ -254,7 +257,7 @@
         <p class="card-text">
          Create a new group now and use realtime and instant chatting feature with any numbers of friends.
         </p>
-        <a href="init.php" class="btn btn-primary">Create Group</a>
+        <a href="init.php" class="btn btn-secondary">Create Group</a>
       </div>
     </div>
   </div>
@@ -272,9 +275,9 @@
       </div>
       <div class="col-md-6 col-lg-5 ml-auto mr-auto d-flex align-items-center mt-4 mt-md-0">
         <div class="pl-3 pr-2">
-          <h5 class="card-title">Namaste Chatting Website</h5>
+          <h5 class="card-title">Namaste Messenger</h5>
           <p class="text-muted">Setup your beautiful profile. Find your friends here and start chatting with them, also make numbers of new friend here. There is a option to create group also, if you want to chat with more than one friend simultaneously.</p>
-          <a href="profile.php" class="btn btn-success mt-2 mr-2">Visit Your Profile</a>
+          <a href="profile.php" class="btn btn-success mt-2 mr-2">My Profile</a>
           <a href="find.php" class="btn mt-2 mr-2 btn-danger">Find Friends</a>
         </div>
       </div>
@@ -285,9 +288,9 @@
         <div>
         <div class="pl-3 pr-2">
           <h5 class="card-title">Yogesh Giri</h5>
-          <p class="text-muted">Developer - NAMASTE</p>
+          <p class="text-muted">Developer - NAMASTE MESSENGER</p>
           <p class="card-text">Hey, This beautiful chatting website is created by me. I am an enthusiastic full stack web developer from India. Always passionate about my work because, I love what I do.</p>
-          <a href="https://github.com/yogeshgiri904" class="btn btn-success mt-2 mr-2">Visit Profile</a>
+          <a href="https://github.com/yogeshgiri904" class="btn btn-success mt-2 mr-2">Visit Me</a>
           <a href="https://yogeshgiri904.github.io/advance_sro/" class="btn mt-2 mr-2 btn-danger">Organization</a>
         </div>
         </div>

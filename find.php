@@ -18,7 +18,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" rel="stylesheet" />
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <title>Find Friend - NAMASTE</title>
+    <link rel="icon" href="img/n.jpg" type="image/x-icon">
+    <title>Find Friend | NAMASTE</title>
     <style>
 * {
   box-sizing: border-box;

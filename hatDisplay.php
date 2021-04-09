@@ -2,12 +2,10 @@
     include "conn.php";
     include "auth.php";
 
-	// Creating bot if sessionRoom is null
-
 	if(!isset($_SESSION['room']))
 	{
         $room = $username."bot";
-		// $sql = "CREATE TABLE `epiz_27865341_user`.`$id` ( `sn` INT(128) NOT NULL AUTO_INCREMENT , `username` VARCHAR(128) NOT NULL , `dp` VARCHAR(128) NOT NULL, `msg` VARCHAR(128) NOT NULL , `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`sn`)) ENGINE = MyISAM;";
+		// $sql = "CREATE TABLE `epiz_27865341_user`.`$room` ( `sn` INT(128) NOT NULL AUTO_INCREMENT , `username` VARCHAR(128) NOT NULL , `dp` VARCHAR(128) NOT NULL, `msg` VARCHAR(128) NOT NULL , `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`sn`)) ENGINE = MyISAM;";
 		$sql = "CREATE TABLE `user`.`$room` ( `sn` INT(128) NOT NULL AUTO_INCREMENT , `username` VARCHAR(128) NOT NULL , `dp` VARCHAR(128) NOT NULL,  `msg` VARCHAR(128) NOT NULL , `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`sn`)) ENGINE = InnoDB;";
 		$result = mysqli_query($conn, $sql);
 		if($result)
@@ -67,35 +65,52 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel='stylesheet' href='css/hat.css'>
+    <link rel="icon" href="img/n.jpg" type="image/x-icon">
     <title>My Inbox | Namaste</title>
-</head>
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-        <script>
-            $(document).ready(function() { 
-                $(".submit").click(function() { 
-                    $(".messages").animate({ scrollTop: $(document).height() }, "fast"); 
-                }); 
-                setInterval(() => {
-                    $("#autodata").load("hatInput.php");
-					$("#autodata2").load("hatInput2.php");
-                }, 500);
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function() { 
+			$(".submit").click(function() { 
+				$(".messages").animate({ scrollTop: $(document).height() }, "fast"); 
+			}); 
+			setInterval(() => {
+				$("#autodata").load("hatInput.php");
+			}, 500);
+			setInterval(() => {
+				$("#autodata2").load("hatInput2.php");
+			}, 500);
+			$('#formbox').on("submit",function(){
+				$.ajax({
+					type: "POST",
+					url: "insert.php",
+					data: $(this).serialize(),
+					success: function(){
+						$('#formbox').trigger('reset');
+					},
+					error:function(){
+						alert("ERROR! Message not sent");
+					}
+				});
+				return false;
+			});
+		});
+        
+		$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 
-                $('#formbox').on("submit",function(){
-                    $.ajax({
-                        type: "POST",
-                        url: "insert.php",
-                        data: $(this).serialize(),
-                        success: function(){
-                            $('#formbox').trigger('reset');
-                        },
-                        error:function(){
-                            alert("ERROR! Message not sent");
-                        }
-                    });
-                    return false;
-                });
-            });
-        </script>
+		$("#profile-img").click(function() {
+			$("#status-options").toggleClass("active");
+		});
+
+		$(".expand-button").click(function() {
+		$("#profile").toggleClass("expanded");
+			$("#contacts").toggleClass("expanded");
+		});
+
+		function goBack() {
+		window.history.back();
+		}
+	</script>
+</head>
 <body>
 <div id="frame">
 	<div id="sidepanel">
@@ -164,23 +179,5 @@
 		</div>
 	</div>
 </div>
-<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
-<script>
-$(".messages").animate({ scrollTop: $(document).height() }, "fast");
-
-$("#profile-img").click(function() {
-	$("#status-options").toggleClass("active");
-});
-
-$(".expand-button").click(function() {
-  $("#profile").toggleClass("expanded");
-	$("#contacts").toggleClass("expanded");
-});
-
-function goBack() {
-  window.history.back();
-}
-</script>
-</body></html>
 </body>
 </html>

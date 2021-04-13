@@ -8,42 +8,74 @@ if(isset($_SESSION['username']))
 ?>
 
 <?php
-if($_POST)
-{
   include 'conn.php';
   $login = false;
-  $username = $_POST["username"];
-  $pass = $_POST["pass"];
+  $userCheck = $passCheck = false;
+  $userError = $passError = false;
 
-  $sql = "SELECT * FROM `login` WHERE `username` LIKE '$username' AND `pass` LIKE '$pass'";
-  $result = mysqli_query($conn, $sql);
-  $row = mysqli_fetch_array($result);
-  $check = mysqli_num_rows($result);
-  if($check >= 1)
+  if(isset($_POST['submit']))
   {
-    $login = true;
-    session_start();
-    $_SESSION['loggedin'] = true;
-    $_SESSION['username'] = $username;
-    $_SESSION['mobile'] = $row['mobile'];
-    $_SESSION['email'] = $row['email'];
-    $_SESSION['pass'] = $row['pass'];
-    $_SESSION['timestamp'] = time();
-    header("location: home.php");
+    $username = $_POST["username"];
+    $pass = $_POST["pass"];
+
+    // Username input validation
+    if(empty($username)) {
+      echo '<div class="alert alert-danger" role="alert"><b>Warning!</b> Username cannot be empty.</div>';
+      $userError = true;
+    } 
+    else if(preg_match("/^[A-Za-z0-9!@#$%^&*_.]{3,}$/",$username)) {
+      $userCheck = true;
+    }
+    else{
+      echo '<div class="alert alert-danger" role="alert"><b>Warning!</b> Invalid Username</div>';
+      $userError = true;
+    }
+
+    // Password input validation
+    if(empty($pass)) {
+      echo '<div class="alert alert-danger" role="alert"><b>Warning!</b> Password cannot be empty.</div>';
+      $passError = true;
+    }
+    else if(preg_match('/^[A-Za-z0-9!@#$%^&*_.]{3,}$/', $pass)) {
+      $passCheck = true;
+    }
+    else{
+      echo '<div class="alert alert-danger" role="alert"><b>Warning!</b> Trying to hack me. Not that much easy BETA :) </div>';
+      $passError = true;
+    }
+
+    if($userCheck && $passCheck)
+    {
+      $sql = "SELECT * FROM `login` WHERE `username` LIKE '$username' AND `pass` LIKE '$pass'";
+      $result = mysqli_query($conn, $sql);
+      $row = mysqli_fetch_array($result);
+      $check = mysqli_num_rows($result);
+      if($check >= 1)
+      {
+        $login = true;
+        session_start();
+        $_SESSION['loggedin'] = true;
+        $_SESSION['username'] = $username;
+        $_SESSION['mobile'] = $row['mobile'];
+        $_SESSION['email'] = $row['email'];
+        $_SESSION['pass'] = $row['pass'];
+        $_SESSION['timestamp'] = time();
+        header("location: home.php");
+      }
+      else
+      {
+        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+        <strong>Warning! </strong>Either Username or Password is incorrect.
+        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'>&times;</span>
+        </button>
+        </div>";
+      }
+    }
   }
-  else
-  {
-    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-    <strong>Warning! </strong>Either Username or Password is incorrect.
-    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-        <span aria-hidden='true'>&times;</span>
-    </button>
-    </div>";
+  else{
+    $username = $pass = NULL;
   }
-}
-else{
-  $username = $pass = NULL;
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,6 +83,8 @@ else{
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -62,12 +96,19 @@ else{
     <link rel="icon" href="img/n.jpg" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
-            * {
+      * {
         font-family: 'Poppins', sans-serif;
       }
       h1,h2,h3,h4,h5,h6{
         font-weight: bold;
       }
+      .fa-exclamation-circle{
+          position: absolute;
+          margin-top: 15px;
+          margin-left: 3px;
+          font-size: 15px;
+          color: orange;
+        }
     </style>
 </head>
 <body>
@@ -83,13 +124,15 @@ else{
           <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
             <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
           </svg>
-          <input type="text" name="username" required class="login__input name" value="<?php echo $username; ?>" placeholder="Username"/>
+          <input type="text" name="username" class="login__input name" value="<?php echo $username; ?>" placeholder="Username"/>
+          <?php if($userError) echo "<i class='fa fa-exclamation-circle' aria-hidden='true'></i>"; ?>
         </div>
         <div class="login__row">
           <svg class="login__icon pass svg-icon" viewBox="0 0 20 20">
             <path d="M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0" />
           </svg>
-          <input type="password" name="pass" required class="login__input pass" value="<?php echo $pass; ?>" placeholder="Password"/>
+          <input type="password" name="pass" class="login__input pass" value="<?php echo $pass; ?>" placeholder="Password"/>
+          <?php if($passError) echo "<i class='fa fa-exclamation-circle' aria-hidden='true'></i>"; ?>
         </div>
         <input type="submit" name="submit" class="login__submit" value="Sign In">
         <p class="login__signup">Don't have an account? &nbsp;<a href="signup.php">Sign Up</a></p>

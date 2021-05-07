@@ -65,74 +65,73 @@ h1,h2,h3,h4,h5,h6{
   font-weight: 300;
   font-size: 14px;
 }
+.navbar{
+  height: 60px;
+  padding-left:30px;
+}
+.fa-arrow-circle-left{
+  font-size: 25px;
+}
     </style>
 </head>
 <body>
-<div class="container bg-white p-4 pb-2">
-<nav class="navbar navbar-expand-lg navbar-white bg-white w-100">
-  <div class="container-fluid">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="home.php"><i>Home</i></a></li>
-        <li class="breadcrumb-item active" aria-current="page"><i>Find Friends</i></li>
-      </ol>
-    </nav>
-  </div>
-</nav>
-</div>
 
-    <div class="container bg-white">
-        <div class="row p-2">
-            <?php
-                $findSql = "SELECT * FROM `login`;";
-                $result = mysqli_query($conn, $findSql);
-                if(mysqli_num_rows($result)>0)
-                {
-                    while($data = mysqli_fetch_assoc($result))
-                    {
-                        $friendUsername = $data['username'];
-                        $email = $data['email'];
-                        $mobile = $data['mobile'];
-                        $target = $friendUsername.$username;
-                        $ifExists = $username.$friendUsername;
-                        if($username != $friendUsername)
-                        { 
-                          // $findTable = "SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'epiz_27865341_user' AND TABLE_NAME = '$ifExists'";
-                          $findTable = "SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'user' AND TABLE_NAME = '$ifExists'";
-                          $findResult = mysqli_query($conn, $findTable);
-                          if(mysqli_num_rows($findResult)>0)
-                          {
-                            $target = $ifExists;
-                          } 
-                          $getImg ="SELECT * FROM `dp` WHERE `username` = '$friendUsername';";
-                          $imgResult = mysqli_query($conn, $getImg);
-                          if(mysqli_num_rows($imgResult)>0) {
-                            $imgData = mysqli_fetch_array($imgResult);
-                            $folder = $imgData['folder'];
-                          }
-                          else
-                          {
-                            $folder = "asset/user.png";
-                          }
-                        echo "
-                        <div class='col-md-4 p-3'>
-                        <div class='card'>
-                        <img src='$folder' alt='User'>
-                        <h1 class='font-weight-bold mb-1'>$friendUsername</h1>
-                        <h2><i class='fas fa-envelope'></i> $email</h2>
-                        <h2><i class='fas fa-mobile-alt'></i> $mobile</h2>
-                        <div class='container bg-white'>
-                          <a href='create.php?id=$target' type='button' class='btn btn-lg btn-outline-danger btn-rounded m-1 mt-3' data-mdb-ripple-color='dark'><i class='fas fa-plus'></i> Add</a>
-                          <a href='create.php?id=$target' type='button' title='Messsage' class='btn btn-lg btn-primary btn-floating m-1 mt-3'><i class='fas fa-paper-plane fa-lg''></i></a>
-                        </div>
-                        </div>
-                        </div>";
-                        }
-                    }
-                }
-            ?>
-        </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container-fluid">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <a href="home.php"><i class="fas fa-arrow-circle-left"></i></a> &nbsp;&nbsp;&nbsp;
+          <li class="breadcrumb-item"><a href="home.php">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page"><b>Find Friends</b></li>
+        </ol>
+      </nav>
     </div>
+  </nav>
+
+  <div class="container mt-5 pt-3 bg-white">
+      <div class="row p-2">
+          <?php
+              $findSql = "SELECT * FROM `login`;";
+              $result = mysqli_query($conn, $findSql);
+              if(mysqli_num_rows($result)>0)
+              {
+                while($data = mysqli_fetch_assoc($result))
+                {
+                  
+                  $friendUsername = $data['username'];
+                  $friendEmail = $data['email'];
+                  $friendMobile = $data['mobile'];
+                  $target = $friendUsername.$username;
+                  if($friendUsername != $username && $friendUsername != 'bot'){
+                    $getImg ="SELECT * FROM `dp` WHERE `username` = '$friendUsername';";
+                    $imgResult = mysqli_query($conn, $getImg);
+                    if(mysqli_num_rows($imgResult)>0) {
+                      $imgData = mysqli_fetch_array($imgResult);
+                      $folder = $imgData['folder'];
+                    }
+                    else
+                    {
+                      $folder = "asset/user.png";
+                    }
+                    echo "
+                    <div class='col-md-4 p-3'>
+                    <div class='card'>
+                    <img src='$folder' alt='User'>
+                    <h1 class='font-weight-bold mb-1'>$friendUsername</h1>
+                    <h2><i class='fas fa-envelope'></i> $friendEmail</h2>
+                    <h2><i class='fas fa-mobile-alt'></i> $friendMobile</h2>
+                    <div class='container bg-white'>
+                      <a href='friendProfile.php?id=$friendUsername' type='button' class='btn btn-lg btn-outline-danger btn-rounded m-1 mt-3 fw-bold' data-mdb-ripple-color='dark'>Profile</a>
+                      <a href='create.php?id=$target' type='button' title='Messsage' class='btn btn-lg btn-primary btn-floating m-1 mt-3'><i class='fas fa-paper-plane fa-lg''></i></a>
+                    </div>
+                    </div>
+                    </div>";
+                  }
+                }
+              }
+          ?>
+      </div>
+  </div>
 
 </body>
 </html>

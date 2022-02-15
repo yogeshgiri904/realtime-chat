@@ -20,27 +20,39 @@ if(isset($_SESSION['username']))
 
     // Username input validation
     if(empty($username)) {
-      echo '<div class="alert alert-danger" role="alert"><b>Warning!</b> Username cannot be empty.</div>';
+      echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+      <strong>Warning! </strong>Username cannot be empty. 
+      <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+      </div>";
       $userError = true;
     } 
     else if(preg_match("/^[A-Za-z0-9!@#$%^&*_.]{3,}$/",$username)) {
       $userCheck = true;
     }
     else{
-      echo '<div class="alert alert-danger" role="alert"><b>Warning!</b> Invalid Username</div>';
+      echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+      <strong>Warning! </strong>Invalid Username.
+      <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+      </div>";
       $userError = true;
     }
 
     // Password input validation
     if(empty($pass)) {
-      echo '<div class="alert alert-danger" role="alert"><b>Warning!</b> Password cannot be empty.</div>';
+      echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+      <strong>Warning! </strong>Password cannot be empty.
+      <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+      </div>";
       $passError = true;
     }
-    else if(preg_match('/^[A-Za-z0-9!@#$%^&*_.]{3,}$/', $pass)) {
+    else if(preg_match('/^[A-Za-z0-9!@#$%^&*_.]{1,}$/', $pass)) {
       $passCheck = true;
     }
     else{
-      echo '<div class="alert alert-danger" role="alert"><b>Warning!</b> Trying to hack me. Not that much easy BETA :) </div>';
+      echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+      <strong>Warning! </strong>Trying to Hack me. Not that much EASY :) 
+      <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+      </div>";
       $passError = true;
     }
 
@@ -55,7 +67,7 @@ if(isset($_SESSION['username']))
         $login = true;
         session_start();
         $_SESSION['loggedin'] = true;
-        $_SESSION['username'] = $username;
+        $_SESSION['username'] = strtolower($username);
         $_SESSION['mobile'] = $row['mobile'];
         $_SESSION['email'] = $row['email'];
         $_SESSION['pass'] = $row['pass'];
@@ -64,11 +76,10 @@ if(isset($_SESSION['username']))
       }
       else
       {
+        $userError = $passError = true;
         echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
         <strong>Warning! </strong>Either Username or Password is incorrect.
-        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-            <span aria-hidden='true'>&times;</span>
-        </button>
+        <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
         </div>";
       }
     }

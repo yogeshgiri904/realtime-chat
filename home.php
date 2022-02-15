@@ -289,9 +289,9 @@
         <div class="pl-3 pr-2">
           <h5 class="card-title">Yogesh Giri</h5>
           <p class="text-muted">Developer - NAMASTE MESSENGER</p>
-          <p class="card-text">Hey, This beautiful chatting website is created by me. I am an enthusiastic full stack web developer from India. Always passionate about my work because, I love what I do.</p>
-          <a href="https://github.com/yogeshgiri904" class="btn btn-success mt-2 mr-2">Visit Me</a>
-          <a href="https://yogeshgiri904.github.io/advance_sro/" class="btn mt-2 mr-2 btn-danger">Organization</a>
+          <p class="card-text">Hey, This beautiful chatting website is created by me. I am an enthusiastic full stack web developer from India. Always passionate about my work because I love what I do.</p>
+          <a href="https://yogeshgiri904.github.io/my-portfolio/" class="btn btn-success mt-2 mr-2">About Me</a>
+          <a href="https://github.com/yogeshgiri904" class="btn mt-2 mr-2 btn-danger">Projects</a>
         </div>
         </div>
       </div>

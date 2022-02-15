@@ -40,11 +40,11 @@ if(isset($_SESSION['username']))
       echo '<div class="alert alert-danger" role="alert"><b>Warning!</b> Password cannot be empty.</div>';
       $passError = true;
     }
-    else if(preg_match('/^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*_.]{6,}$/', $pass)) {
+    else if(preg_match('/^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*_.]{6,}$/', $pass)) {
       $passCheck = true;
     }
     else{
-      echo '<div class="alert alert-danger" role="alert"><b>Warning!</b> Your password is weak. For security reasons, Please enter a strong password.</div>';
+      echo '<div class="alert alert-danger" role="alert"><b>Warning!</b> Your password is weak. Please enter a strong password.</div>';
       $passError = true;
     }
 
@@ -98,12 +98,14 @@ if(isset($_SESSION['username']))
     if($userCheck && $emailCheck && $mobileCheck && $passCheck && $cpassCheck){
       if($emailMatch >= 1)
       {
+        $emailError = true;
         echo '<div class="alert alert-danger" role="alert"><b>Warning! </b>
         Your email is already registered. <a href="index.php">Sign In</a> instead?
         </div>';
       }
       else if($userMatch >= 1)
       {
+        $userError = true;
         echo '<div class="alert alert-danger" role="alert"><b>Warning! </b>';
         echo "'$username'";
         echo ' username not available. </div>';
@@ -114,8 +116,9 @@ if(isset($_SESSION['username']))
         $result = mysqli_query($conn, $sql);
         if($result)
         {
+          $username = $pass = $cpass = $email = $mobile = NULL;
           echo '<div class="alert alert-success" role="alert">
-          <b>Success</b> Your account has been created successfully. <a href="index.php">Sign In</a> now?
+          <b>Success! </b>Your account has been created successfully. <a href="index.php">Sign In</a> now?
           </div>';
         }
       }

@@ -145,6 +145,7 @@
               <nav aria-label="breadcrumb" class="main-breadcrumb">
                 <ol class="breadcrumb bg-white">
                   <li class="breadcrumb-item"><a href="home.php">Home</a></li>
+                  <li class="breadcrumb-item"><a href="find.php">Friends</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Profile</li>
                 </ol>
               </nav>
